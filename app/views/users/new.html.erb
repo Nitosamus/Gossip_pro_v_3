@@ -1,0 +1,36 @@
+<h1> Creation d'un nouveau utilisateur </h1>
+<%= link_to "Connexion", users_path, class:"nav-link", class: "btn btn-outline-secondary"%>
+
+<%=form_for @user do |f|%>
+<div class="form-group">
+<label>Nom</label><br>
+<%=f.text_field :first_name, class: "form-control", size: "40 * 30", class:"btn btn-outline-info" %>
+</div>
+<div class="form-group">
+<label>Prénom</label><br>
+<%=f.text_field :last_name, class: "form-control", size: "40 * 30", class:"btn btn-outline-info" %>
+</div>
+<div class="form-group">
+<label>Email</label><br>
+<%=f.text_field :email, class: "form-control", size: "40 *30", class:"btn btn-outline-info" %>
+</div
+<div class="form-group">
+<label>Age</label><br>
+<%=f.text_field :age, class: "form-control", size: "30 *20", class:"btn btn-outline-info" %>
+</div>
+<div class="form-group">
+<label>Description</label><br>
+<%=f.text_area :description, class: "form-control", size: "70 * 70", class:"btn btn-outline-info" %>
+</div>
+<div class="form-group">
+<label>Mot de passe</label><br>
+<%=f.text_field :password, class: "form-control", size: "50 * 20", class:"btn btn-outline-info" %>
+</div>
+<div class="form-group">
+<label>confirmation du mot de passe</label><br>
+<%=f.text_field :password_confirmation, class: "form-control", size: "50 *20", class:"btn btn-outline-info" %>
+</div>
+<button type="submit" class="btn btn-success">Create</button> 
+<%end%>
+</div>
+

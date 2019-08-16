@@ -1,0 +1,23 @@
+<% if flash[:danger]%>
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Hey!</h4>
+  <p><%=flash[:danger]%></p>
+  <hr>
+  <p class="mb-0">Try again.</p>
+</div>
+<%end%>
+
+<%=form_tag url_for(controller: "sessions", action: "create"), method: "post" do |f|%>
+<div class="form-group">
+<label>Email</label><br>
+<%=text_field_tag :email %>
+</div>
+<div class="form-group">
+<label>Mot de passe</label><br>
+<%=text_field_tag :password %>
+</div>
+<div>
+<button type="submit" class="btn btn-success">Connexion</button> 
+</div>
+<%end%>
+

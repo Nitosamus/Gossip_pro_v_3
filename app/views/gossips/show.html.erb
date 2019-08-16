@@ -1,0 +1,86 @@
+
+<%if flash[:notice]%>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Hey!</strong><%=flash[:notice]%>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%end%>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">Author</th>
+      <th scope="col">Author'City</th>
+      <th scope="col">
+        <button type="button" class="btn btn-info">
+  LIKES <span class="badge badge-light">4</span>
+</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%=@gossip.id%></th>
+      <td><%=@gossip.title%></td>
+      <td><%=@gossip.content%></td>
+      <td><%=@gossip.user.last_name%><%=link_to @gossip.user.first_name, user_path(@gossip.user.id)%></td>
+      <td><%=@gossip.user.city.name%></td>
+      <td> 
+        <%=link_to new_gossip_like_path(@gossip.id), class:"btn btn-primary", role:"button" do %>
+                Like
+                <span class="badge badge-light"><%=@gossip.likes.count%></span>
+                <%end%>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action active">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">
+
+<button type="button" class="btn btn-info">
+Comments total <span class="badge badge-success"><%=@gossip.comments.count%></span>
+</button>
+
+      </h5>
+    </div>
+  </a>
+  <p class="mb-1"> <%@gossip.comments.length.times do |k| %>
+
+		  	 <button type="button" class="btn btn-primary">
+		  	Comments <span class="badge badge-secondary"><%=k+1%></span>
+		  	<span class="sr-only">unread messages</span>
+			</button>
+      <%=link_to "Edit", edit_gossip_comment_path(@gossip.id, @gossip.comments[k].id), class: "button", class: "btn btn-light"%>
+      <%=link_to "Delete", gossip_comment_path(@gossip.id, @gossip.comments[k].id), class: "button", class: "btn btn-light",
+        method: :delete, data: {confirm: "Are you sure"}%>
+      	<ul>
+      		<li class= "bg-warning"> Commentaire : <%=@gossip.comments[k].content%></li>
+      		<li class= "bg-primary" type="button"> Auteur :<%=@gossip.comments[k].user.first_name%> <%=@gossip.comments[k].user.last_name%></li>
+      	</ul>
+      	<%end%>
+    </div>
+  </a>
+  </p>
+</div>
+
+
+<p><%link_to%>ADD NEW COMMENT BELOW</p>
+
+
+<p>Edit chomp:</p>
+<%= form_tag url_for(gossip_comments_path(params[:id])), method: "post" do %>
+
+      <%= label_tag 'Content'%>
+      <%= text_area_tag 'content'%>
+      <br /> <br />
+      <%= submit_tag "Create comments"%>
+   <% end %>
+

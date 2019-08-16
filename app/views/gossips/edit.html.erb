@@ -1,0 +1,14 @@
+
+<p>Edit chomp:</p>
+<%= form_tag url_for(  action: 'update'), method: "put" do %>
+
+      <%= label_tag 'Title' %>
+      <%= text_field_tag 'title'%>
+      <br /> <br />
+
+      <%= label_tag 'Content'%>
+      <%= text_area_tag 'content'%>
+      <br /> <br />
+      <%= submit_tag "Edit Gossip"%>
+
+    <% end %>

@@ -1,0 +1,49 @@
+
+<%if flash[:notice]%>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Hey!</strong><%=flash[:notice]%>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%end%>
+
+
+
+<h1 class="btn btn-outline info">City gossip showing in description:</h1> <br>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+       <th scope="col"> City name </th>
+      <th scope="col">Gossip Title</th>
+      <th scope="col">Gossip Content</th>
+       <th scope="col">
+         
+        <button type="button" class="btn btn-info">
+        LIKES <span class="badge badge-light">Like</span>
+        </button>
+       </th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    	<% @city.users.each  do |user| %>
+      		<% user.gossips.each  do |element| %>
+      			<th scope="row"><%= element.id%></th>
+			      <td class="bg-primary"><%=user.city.name%></td>
+			      <td class="bg-secondary"><%=element.title%></td>
+			      <td class="bg-success"><%=element.content%></td> 
+             <td class="bg-success">  
+              <%=link_to new_gossip_like_path(element.id), class:"btn btn-primary", role:"button" do %>
+                Like
+                <span class="badge badge-light"><%=element.likes.count%></span>
+                <%end%>
+             </td> 
+            </tr>
+    		<%end%>
+		<%end%>    
+  </tbody>S
+</table>
+

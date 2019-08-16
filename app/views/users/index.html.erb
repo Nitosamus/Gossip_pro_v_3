@@ -1,0 +1,48 @@
+
+<%if flash[:notice]%>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Hey!</strong><%=flash[:notice]%>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%end%>
+
+
+<% if flash[:success]%>
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">well done!</h4>
+  <p><%=flash[:success]%></p>
+  <hr>
+  <p class="mb-0">Good surf!!</p>
+</div>
+<%end%>
+
+<%if flash[:notice]%>
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">You want deconnect!</h4>
+  <p><%=flash[:notice]%></p>
+  <hr>
+  <p class="mb-0">Good by!!</p>
+</div>
+<%end%>
+
+<h1 class="btn btn-outline-warning" >Bienvenue dans mon site BLALBLA BOOOM POTINS!!!!!</h1>
+
+
+<div class="card text-center">
+  <div class="card-header">
+    BIENVENUE
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Vous ête dans le site Gossip</h5>
+    <p class="card-text">Dans ce site vous aurez tout un tas d'occasion: créer un Gossip, editer, etc.</p>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+
+<% if flash[:notice]%>
+<div class="notice"><%= flash[:notice] %></div>
+<%end%>

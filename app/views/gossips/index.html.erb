@@ -1,0 +1,55 @@
+
+<%if flash[:notice]%>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Hey!</strong><%=flash[:notice]%>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%end%>
+
+
+
+<% if flash[:success]%>
+<div class="alert alert-sucess" role="alert">
+  <h4 class="alert-heading">well done!</h4>
+  <p><%=flash[:success]%></p>
+  <hr>
+  <p class="mb-0">welcome!!!.</p>
+</div>
+<%end%>
+<p>
+voici la liste des potins : </br>
+<p>
+<%=link_to "Nouveau potin", controller: "gossips",	
+	 action: "new"%>
+</p>
+
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+    </tr>
+  </thead>
+    <% @gossips.each do |element|%>
+  <tbody>
+    <tr>
+      <th scope="row"><%=element.id%></th>
+      <td><%=element.title%><%= link_to "More", gossip_path(element.id)%></td>
+      <td><%=element.content%></td> 
+
+      <%if element.user.id == session[:user_id]%>
+       <td><%=link_to "Modifier", edit_gossip_path(element.id), class:"btn btn-primary", role:"button"%>
+        <%=link_to "Supprimer", gossip_path(element.id), class:"button", class:"btn btn-secondary", data: {confirm: "Are you sure??", method: "DELETE"}%></td> 
+        <%end%>
+        <td>
+         <%=link_to new_gossip_like_path(element.id), class:"btn btn-primary", role:"button" do %>
+                Like
+                <span class="badge badge-light"><%=element.likes.count%></span>
+                <%end%>
+        </td>
+  </tbody>
+    <%end%>
+</table>

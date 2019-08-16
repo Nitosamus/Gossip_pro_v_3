@@ -1,0 +1,9 @@
+<h1> Edit comment below</h1>
+<p>Edit chomp:</p>
+
+<%=form_for @comment, url: url_for(action: "update", id: params[:id]) do |f|%>
+<label>Content</label>
+<%=f.text_area :content, size: "60 x 12"%>
+<br /> <br />
+<%=f.submit "Edit Comments"%>
+  <% end %>
